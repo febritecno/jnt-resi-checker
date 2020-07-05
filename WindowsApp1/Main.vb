@@ -60,6 +60,7 @@ Public Class Main
             ProgressBar1.Increment(20)
 
         Catch ex As Exception
+            MessageBox.Show(ex, "info")
             Label1.Text = "[X][X][X] TASK ERROR [ RESI: " + resi + " ]" + "[ " + ex + " ] ......"
             ProgressBar1.Value() = 100
         End Try
@@ -129,16 +130,23 @@ Public Class Main
     End Sub
 
     Private Async Sub Cek_btn_ClickAsync(sender As Object, e As EventArgs) Handles Cek_btn.Click
-        If (resipath = "" Or resipath = vbNullString) Then
-            MessageBox.Show("Resi Belum Termuat, Tekan Tombol Load untuk memuat ...", "Info", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
-        Else
-            For i = 0 To (resi.Length - 1)
-                ProgressBar1.Value = 0
-                Label1.Text = "[Tips: Sabar, jika mancet disini berarti sedang download chrominium (>,<)] ......."
-                Await GetResi(resi(i))
-                Await Task.Delay(3000)
-            Next
-        End If
+        Try
+            If (resipath = "" Or resipath = vbNullString) Then
+                MessageBox.Show("Resi Belum Termuat, Tekan Tombol Load untuk memuat ...", "Info", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+            Else
+
+                For i = 0 To (resi.Length - 1)
+                    ProgressBar1.Value = 0
+                    Label1.Text = "[Tips: Sabar, jika mancet disini berarti sedang download chrominium (>,<)] ......."
+                    Await GetResi(resi(i))
+                    Await Task.Delay(3000)
+                Next
+            End If
+        Catch err As Exception
+            MessageBox.Show(err, "info")
+            Label1.Text = "ERROR !!!"
+            ProgressBar1.Value() = 100
+        End Try
     End Sub
 
     Private Sub Save_btn_Click(sender As Object, e As EventArgs) Handles Save_btn.Click
@@ -159,5 +167,27 @@ Public Class Main
         ElseIf CheckBox1.Checked = False Then
             headless = True
         End If
+    End Sub
+
+    Private Sub FileToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles FileToolStripMenuItem1.Click
+        Reset()
+        Application.Exit()
+    End Sub
+
+    Private Sub SembunyikanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SembunyikanToolStripMenuItem.Click
+        Me.WindowState = FormWindowState.Minimized
+        Me.Visible = False
+        NotifyIcon1.Visible = True
+    End Sub
+
+    Private Sub NotifyIcon1_MouseDoubleClick(ByVal sender As System.Object,
+       ByVal e As System.Windows.Forms.MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick
+        Me.Visible = True
+        Me.WindowState = FormWindowState.Normal
+        NotifyIcon1.Visible = False
+    End Sub
+
+    Private Sub MinimizeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MinimizeToolStripMenuItem.Click
+        Me.WindowState = FormWindowState.Minimized
     End Sub
 End Class
