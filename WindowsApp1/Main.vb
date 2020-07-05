@@ -61,10 +61,12 @@ Public Class Main
 
         Catch ex As Exception
             MessageBox.Show(ex, "info")
-            Label1.Text = "[X][X][X] TASK ERROR [ RESI: " + resi + " ]" + "[ " + ex + " ] ......"
+            ProgressBar1.Value() = 100
+        Finally
+            MessageBox.Show("Gagal Mengambil Data !!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Label1.Text = "[X][X][X] TASK ERROR [ RESI: " + resi + " ] ......"
             ProgressBar1.Value() = 100
         End Try
-
 
     End Function
 
@@ -72,7 +74,7 @@ Public Class Main
         If (resipath = "" Or resipath = vbNullString) Then
             MessageBox.Show("Resi Belum Termuat, Tekan Tombol Load...", "Info", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         Else
-            resi = IO.File.ReadAllLines(text)
+            resi = File.ReadAllLines(text)
         End If
         Return 1
     End Function
@@ -134,18 +136,21 @@ Public Class Main
             If (resipath = "" Or resipath = vbNullString) Then
                 MessageBox.Show("Resi Belum Termuat, Tekan Tombol Load untuk memuat ...", "Info", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
             Else
-
                 For i = 0 To (resi.Length - 1)
                     ProgressBar1.Value = 0
-                    Label1.Text = "[Tips: Sabar, jika mancet disini berarti sedang download chrominium (>,<)] ......."
+                    Label1.Text = "[    Tips: Sabar, jika mancet disini berarti sedang download chrominium  ] ......."
                     Await GetResi(resi(i))
                     Await Task.Delay(3000)
                 Next
             End If
         Catch err As Exception
-            MessageBox.Show(err, "info")
             Label1.Text = "ERROR !!!"
             ProgressBar1.Value() = 100
+        Finally
+            Label1.Text = "ERROR !!!"
+            MessageBox.Show("Coba Cek Lagi File Yang Anda Muat, Apakah Sudah Benar ?", "Info", MessageBoxButtons.OK, MessageBoxIcon.Question)
+            ProgressBar1.Value() = 100
+            Reset()
         End Try
     End Sub
 
