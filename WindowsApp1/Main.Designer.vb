@@ -45,11 +45,13 @@ Partial Class Main
         Me.ExitToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SembunyikanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RToolStripMenuItem = New System.Windows.Forms.ToolStripSeparator()
         Me.FileToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MinimizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.SembunyikanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RToolStripMenuItem = New System.Windows.Forms.ToolStripSeparator()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
         Clear_btn = New System.Windows.Forms.Button()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -110,7 +112,7 @@ Partial Class Main
         Me.lbTotal.AutoSize = True
         Me.lbTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbTotal.ForeColor = System.Drawing.Color.DarkGreen
-        Me.lbTotal.Location = New System.Drawing.Point(124, 50)
+        Me.lbTotal.Location = New System.Drawing.Point(123, 33)
         Me.lbTotal.Name = "lbTotal"
         Me.lbTotal.Size = New System.Drawing.Size(19, 20)
         Me.lbTotal.TabIndex = 5
@@ -121,7 +123,7 @@ Partial Class Main
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(12, 50)
+        Me.Label2.Location = New System.Drawing.Point(12, 32)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(100, 20)
         Me.Label2.TabIndex = 7
@@ -229,10 +231,23 @@ Partial Class Main
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(37, 20)
         Me.ToolStripMenuItem1.Text = "File"
         '
+        'SembunyikanToolStripMenuItem
+        '
+        Me.SembunyikanToolStripMenuItem.Checked = True
+        Me.SembunyikanToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.SembunyikanToolStripMenuItem.Name = "SembunyikanToolStripMenuItem"
+        Me.SembunyikanToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.SembunyikanToolStripMenuItem.Text = "&Sembunyikan"
+        '
+        'RToolStripMenuItem
+        '
+        Me.RToolStripMenuItem.Name = "RToolStripMenuItem"
+        Me.RToolStripMenuItem.Size = New System.Drawing.Size(143, 6)
+        '
         'FileToolStripMenuItem1
         '
         Me.FileToolStripMenuItem1.Name = "FileToolStripMenuItem1"
-        Me.FileToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.FileToolStripMenuItem1.Size = New System.Drawing.Size(146, 22)
         Me.FileToolStripMenuItem1.Text = "Exit"
         '
         'MinimizeToolStripMenuItem
@@ -249,18 +264,27 @@ Partial Class Main
         Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
         Me.NotifyIcon1.Text = "CekResi V1"
         '
-        'SembunyikanToolStripMenuItem
+        'Label4
         '
-        Me.SembunyikanToolStripMenuItem.Checked = True
-        Me.SembunyikanToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.SembunyikanToolStripMenuItem.Name = "SembunyikanToolStripMenuItem"
-        Me.SembunyikanToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.SembunyikanToolStripMenuItem.Text = "&Sembunyikan"
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Label4.Location = New System.Drawing.Point(123, 64)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(19, 20)
+        Me.Label4.TabIndex = 15
+        Me.Label4.Text = "0"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
-        'RToolStripMenuItem
+        'Label5
         '
-        Me.RToolStripMenuItem.Name = "RToolStripMenuItem"
-        Me.RToolStripMenuItem.Size = New System.Drawing.Size(177, 6)
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(14, 62)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(95, 20)
+        Me.Label5.TabIndex = 16
+        Me.Label5.Text = "Progress  :"
         '
         'Main
         '
@@ -270,6 +294,8 @@ Partial Class Main
         Me.BackColor = System.Drawing.SystemColors.Menu
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ClientSize = New System.Drawing.Size(1031, 647)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ProgressBar1)
@@ -323,4 +349,6 @@ Partial Class Main
     Friend WithEvents MinimizeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SembunyikanToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RToolStripMenuItem As ToolStripSeparator
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
 End Class

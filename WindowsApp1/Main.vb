@@ -8,6 +8,7 @@ Public Class Main
     Public resi() As String
     Public resipath As String
     Public headless As Boolean
+    Public resi_count As Integer
 
     Public Async Function GetResi(resi) As Task
         Timer1.Start()
@@ -15,6 +16,9 @@ Public Class Main
         ProgressBar1.Increment(20)
 
         Try
+            resi_count = Label4.Text + 1
+            Label4.Text = resi_count
+
             Dim url = "https://ipsaya.com/cek-resi.php"
 
             Await New BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision)
@@ -24,6 +28,7 @@ Public Class Main
                 .Devtools = False,
                 .Args = {"--no-sandbox --disable-notifications --window-size=500,500"}
             })
+
 
 
             ProgressBar1.Increment(20)
@@ -60,12 +65,14 @@ Public Class Main
             ProgressBar1.Increment(20)
 
         Catch ex As Exception
-            MessageBox.Show(ex, "info")
-            ProgressBar1.Value() = 100
-        Finally
+            resi_count = Label4.Text - 1
+            Label4.Text = resi_count
+
             MessageBox.Show("Gagal Mengambil Data !!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Label1.Text = "[X][X][X] TASK ERROR [ RESI: " + resi + " ] ......"
             ProgressBar1.Value() = 100
+        Finally
+
         End Try
 
     End Function
@@ -87,6 +94,8 @@ Public Class Main
         lbTotal.Text = 0
         headless = True
         CheckBox1.Checked = False
+        Label4.Text = 0
+        resi_count = Label4.Text
         ''KILL ALL CHROME
         Dim lstOprograms As String() = {
      "chrome",
@@ -106,6 +115,7 @@ Public Class Main
 
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Label4.Text = resi_count
         Reset()
     End Sub
 
@@ -145,12 +155,9 @@ Public Class Main
             End If
         Catch err As Exception
             Label1.Text = "ERROR !!!"
-            ProgressBar1.Value() = 100
-        Finally
-            Label1.Text = "ERROR !!!"
             MessageBox.Show("Coba Cek Lagi File Yang Anda Muat, Apakah Sudah Benar ?", "Info", MessageBoxButtons.OK, MessageBoxIcon.Question)
             ProgressBar1.Value() = 100
-            Reset()
+        Finally
         End Try
     End Sub
 
