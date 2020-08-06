@@ -1,0 +1,7 @@
+https://github.com/Genymobile/scrcpy
+nox
+node-red
+maqiatto
+onesignal push notif
+
+riverpod/pmvvm+app_modules
