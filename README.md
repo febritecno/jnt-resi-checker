@@ -3,7 +3,7 @@
 
 
 
-[![](https://github.com/febritecno/jnt-resi-checker/blob/master/image.png)]
+![](https://github.com/febritecno/jnt-resi-checker/blob/master/image.png)
 
 
 [![Video Demo](https://www.facebook.com/febri.krn/videos/3101881749846908)](https://www.facebook.com/febri.krn/videos/3101881749846908)
